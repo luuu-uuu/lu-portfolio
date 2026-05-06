@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var PDF_URL = "assets/zpj_compressed.pdf";
+  var PDF_URL = "static/zpj_compressed.pdf";
   var MAX_EDGE = 8192;
   var BASE_SCALE = 2;
   var JPEG_QUALITY = 0.88;

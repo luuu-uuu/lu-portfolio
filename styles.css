@@ -3,7 +3,7 @@
   src:
     local("DingTalk JinBuTi"),
     local("DingTalk Jin Bu Ti"),
-    url("assets/fonts/DingTalk-JinBuTi.ttf") format("truetype");
+    url("static/fonts/DingTalk-JinBuTi.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "DIN Alternate";
-  src: url("assets/fonts/DIN%20Alternate%20Bold.ttf") format("truetype");
+  src: url("static/fonts/DIN%20Alternate%20Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -389,7 +389,7 @@ a {
   transform: translateX(-50%);
   width: 33px;
   height: 15px;
-  background: url("assets/xuanfu.svg") no-repeat center / contain;
+  background: url("static/xuanfu.svg") no-repeat center / contain;
   pointer-events: none;
 }
 
