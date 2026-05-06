@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIGC短视频创作平台 · 案例长图</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  </head>
+  <body class="case-page">
+    <header class="case-page-header">
+      <a class="case-back" href="index.html">← 返回首页</a>
+      <h1 class="case-page-title">AIGC短视频创作平台</h1>
+      <a class="case-open-tab" href="assets/zpj_compressed.pdf" target="_blank" rel="noopener noreferrer"
+        >新窗口打开 PDF</a
+      >
+    </header>
+    <main class="case-page-main">
+      <p id="case-status" class="case-status" role="status">正在加载 PDF，并将各页拼接为一张长图…</p>
+      <p id="case-error" class="case-error" hidden></p>
+      <div id="case-actions" class="case-actions" hidden>
+        <a id="case-download" class="case-download" href="#" download="aigc-case-stitched.jpg">下载长图</a>
+      </div>
+      <div class="case-image-wrap">
+        <img
+          id="case-stitched"
+          class="case-stitched"
+          alt="由 PDF 各页纵向拼接而成的案例长图"
+          width="1200"
+          height="800"
+          hidden
+          decoding="async"
+        />
+      </div>
+      <p class="case-hint">
+        本页在浏览器内用 PDF.js 逐页渲染并拼接；页数较多时可能需要几秒。请通过本地或线上
+        <strong>http(s) 地址</strong>访问（勿用 <code>file://</code>），否则无法读取 PDF。
+      </p>
+    </main>
+    <script defer src="case-aigc.js"></script>
+  </body>
+</html>

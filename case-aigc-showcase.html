@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIGC 短视频创作平台 · 案例</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-long-page">
+    <a class="skip-link" href="#case-long-main">跳到主要内容</a>
+    <main id="case-long-main" class="case-long-frame" role="main">
+      <div class="case-long-image-wrap">
+        <a
+          class="header-logo case-long-logo"
+          href="index.html#home"
+          aria-label="返回首页"
+          id="case-long-logo"
+        >
+          <span class="header-logo-visual">
+            <img
+              class="header-logo-idle"
+              src="assets/logo/logo-idle.png"
+              alt=""
+              width="72"
+              height="72"
+              decoding="async"
+            />
+            <span class="header-logo-live" aria-hidden="true">
+              <img
+                class="header-logo-circle"
+                src="assets/logo/logo-circle.png"
+                alt=""
+                width="72"
+                height="72"
+                decoding="async"
+              />
+              <img
+                class="header-logo-leg header-logo-leg--left"
+                src="assets/logo/logo-left-leg.png"
+                alt=""
+                width="72"
+                height="72"
+                decoding="async"
+              />
+              <img
+                class="header-logo-leg header-logo-leg--right"
+                src="assets/logo/logo-right-leg.png"
+                alt=""
+                width="72"
+                height="72"
+                decoding="async"
+              />
+            </span>
+          </span>
+        </a>
+        <img
+          class="case-long-img"
+          src="assets/project-aigc-case-long.png"
+          srcset="assets/project-aigc-case-long.png 2880w"
+          sizes="1440px"
+          alt="AIGC 项目案例长图"
+          width="2880"
+          height="24482"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <!-- 叠在长图红框区域上；位置/大小用 styles.css 中变量微调以对齐稿面 -->
+        <div
+          class="case-long-inline-video"
+          role="region"
+          aria-label="项目宣传视频"
+        >
+          <div class="project-card-video-widget case-long-inline-video-widget">
+            <video
+              class="project-card-video"
+              playsinline
+              preload="metadata"
+              aria-label="AIGC 短视频创作平台宣传视频"
+            >
+              <source
+                src="assets/3%E6%9C%8810%E6%97%A5%282%29%202%20%281%29.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div class="project-card-video-poster-layer" data-video-poster>
+              <img
+                class="project-card-video-poster-img"
+                src="assets/shouzhen.png"
+                alt=""
+                width="3024"
+                height="1688"
+                decoding="async"
+              />
+              <button
+                type="button"
+                class="project-card-video-play"
+                aria-label="播放视频"
+              >
+                <svg
+                  class="project-card-video-play-icon"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.92)" />
+                  <path fill="#333333" d="M18 14 34 24 18 34z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="main.js" defer></script>
+  </body>
+</html>
