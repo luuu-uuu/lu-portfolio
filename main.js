@@ -22,6 +22,13 @@
     return window.matchMedia("(max-width: 820px)").matches;
   }
 
+  function prefersCoarseOrNoHover() {
+    return (
+      window.matchMedia("(hover: none)").matches ||
+      window.matchMedia("(pointer: coarse)").matches
+    );
+  }
+
   function setNavOpen(open) {
     if (!siteNav || !navToggle) return;
     siteNav.classList.toggle("is-open", open);
@@ -81,7 +88,7 @@
 
   if (creativeTrigger && creativeItem && creativePopover && pageHome) {
     creativeTrigger.addEventListener("click", function () {
-      if (!isMobileNav()) return;
+      if (!isMobileNav() && !prefersCoarseOrNoHover()) return;
       var open = !creativeItem.classList.contains("is-open");
       setCreativeOpen(open);
     });
