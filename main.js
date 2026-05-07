@@ -7,9 +7,11 @@
   var navLinks = document.querySelectorAll(".site-nav a");
   var workDropdown = document.querySelector(".nav-item--dropdown");
   var workTrigger = document.getElementById("nav-work-trigger");
-  var heroStage = document.getElementById("hero-stage");
-  var heroHit = document.getElementById("hero-person-hit");
-  var heroVideo = document.getElementById("hero-hover-video");
+  var creativeTrigger = document.getElementById("nav-creative-trigger");
+  var creativeItem = document.querySelector(".nav-item--creative");
+  var creativePopover = document.getElementById("nav-creative-popover");
+  var resumeBtn = document.querySelector(".nav-link--resume");
+  var pageHome = document.body.classList.contains("page-home");
 
   var NAV_ORDER = [
     { id: "home", nav: "home" },
@@ -30,12 +32,22 @@
       workDropdown.classList.remove("is-open");
       if (workTrigger) workTrigger.setAttribute("aria-expanded", "false");
     }
+    if (!open && creativeItem) {
+      setCreativeOpen(false);
+    }
   }
 
   function setWorkDropdownOpen(open) {
     if (!workDropdown || !workTrigger) return;
     workDropdown.classList.toggle("is-open", open);
     workTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function setCreativeOpen(open) {
+    if (!creativeItem || !creativeTrigger || !creativePopover) return;
+    creativeItem.classList.toggle("is-open", open);
+    creativeTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+    creativePopover.setAttribute("aria-hidden", open ? "false" : "true");
   }
 
   if (navToggle && siteNav) {
@@ -67,6 +79,20 @@
     });
   }
 
+  if (creativeTrigger && creativeItem && creativePopover && pageHome) {
+    creativeTrigger.addEventListener("click", function () {
+      if (!isMobileNav()) return;
+      var open = !creativeItem.classList.contains("is-open");
+      setCreativeOpen(open);
+    });
+  }
+
+  if (resumeBtn && pageHome) {
+    resumeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+    });
+  }
+
   if (siteNav) {
     siteNav.querySelectorAll('a[href^="#"]').forEach(function (a) {
       if (a.id === "nav-work-trigger") return;
@@ -83,6 +109,7 @@
         } catch (err) {
           /* ignore */
         }
+        if (isMobileNav()) setNavOpen(false);
       });
     });
   }
@@ -91,6 +118,7 @@
     if (e.key === "Escape") {
       setNavOpen(false);
       setWorkDropdownOpen(false);
+      setCreativeOpen(false);
     }
   });
 
@@ -103,21 +131,40 @@
     }
   });
 
+  document.addEventListener("click", function (e) {
+    if (!isMobileNav() || !creativeItem || !pageHome) return;
+    var t = e.target;
+    if (!(t instanceof Node)) return;
+    if (!creativeItem.contains(t)) {
+      setCreativeOpen(false);
+    }
+  });
+
   function elementDocumentTop(el) {
     return el.getBoundingClientRect().top + window.scrollY;
   }
 
-  /** 单页作品集首页：首屏与项目区均在「首页」tab 下，滚动不改变主导航高亮 */
   function lockNavToHomeTab() {
     var path = (window.location.pathname || "").replace(/\/+$/, "");
     var isIndexPath =
       path === "" ||
       path === "/" ||
       /(^|\/)index\.html$/i.test(path);
-    return isIndexPath && document.getElementById("home");
+    return !pageHome && isIndexPath && document.getElementById("home");
   }
 
   function updateActiveNav() {
+    if (pageHome) {
+      var workLink = document.querySelector('.nav-link--planet[data-nav="work"]');
+      var projects = document.getElementById("planet-projects");
+      if (workLink && projects) {
+        var rect = projects.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var inView = rect.top < vh * 0.55 && rect.bottom > vh * 0.2;
+        workLink.classList.toggle("is-active", inView);
+      }
+      return;
+    }
     if (lockNavToHomeTab()) {
       document.querySelectorAll(".nav-link").forEach(function (a) {
         var key = a.getAttribute("data-nav");
@@ -160,43 +207,8 @@
   window.addEventListener("resize", updateActiveNav, { passive: true });
   onScroll();
 
-  function setHeroVideoHover(on) {
-    if (!heroStage || !heroVideo) return;
-    heroStage.classList.toggle("is-video-hover", on);
-    if (on) {
-      var p = heroVideo.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(function () {});
-      }
-    } else {
-      heroVideo.pause();
-      try {
-        heroVideo.currentTime = 0;
-      } catch (err) {
-        /* ignore */
-      }
-    }
-  }
-
-  if (heroHit && heroStage && heroVideo) {
-    heroHit.addEventListener("mouseenter", function () {
-      setHeroVideoHover(true);
-    });
-    heroHit.addEventListener("mouseleave", function () {
-      setHeroVideoHover(false);
-    });
-    heroHit.addEventListener("focus", function () {
-      setHeroVideoHover(true);
-    });
-    heroHit.addEventListener("blur", function () {
-      setHeroVideoHover(false);
-    });
-  }
-
   document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "hidden" && heroVideo) {
-      heroVideo.pause();
-    }
+    /* reserved */
   });
 
   document.querySelectorAll(".project-card-video-widget").forEach(function (widget) {

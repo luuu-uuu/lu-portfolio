@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lu 的个人作品集 — 产品设计" />
+    <meta name="description" content="Lu 的个人作品集 — Planet LL" />
     <title>Luu · 个人作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,18 +13,18 @@
     />
     <link
       rel="preload"
-      href="static/fonts/DingTalk-JinBuTi.ttf"
+      href="static/fonts/HYPixel9pxJ-2.ttf"
       as="font"
       type="font/ttf"
       crossorigin
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="page-home">
     <a class="skip-link" href="#main">跳到主要内容</a>
 
-    <header class="site-header" id="top">
-      <div class="header-inner">
+    <header class="site-header site-header--planet" id="top">
+      <div class="header-inner header-inner--planet">
         <a class="header-logo" href="index.html#home" aria-label="返回首页" id="header-logo">
           <span class="header-logo-visual">
             <img
@@ -35,7 +35,6 @@
               height="72"
               decoding="async"
             />
-            <!-- 悬停层：与参考一致 — 圆底静止；两腿各一张 absolute inset-0 同尺寸图，用 CSS 复现 Framer rotate（轴心在各 L 顶端） -->
             <span class="header-logo-live" aria-hidden="true">
               <img
                 class="header-logo-circle"
@@ -77,206 +76,222 @@
           <span class="sr-only">打开菜单</span>
         </button>
 
-        <nav class="site-nav" id="site-nav" aria-label="主导航">
-          <ul class="nav-list">
+        <nav class="site-nav site-nav--planet" id="site-nav" aria-label="主导航">
+          <ul class="nav-list nav-list--planet">
             <li>
-              <a class="nav-link is-active" href="#home" data-nav="home">首页</a>
-            </li>
-            <li class="nav-item nav-item--dropdown" data-nav="work">
               <a
-                class="nav-link nav-link--dropdown-trigger"
-                href="#project-dashboard"
-                id="nav-work-trigger"
+                class="nav-link nav-link--planet"
+                href="#planet-projects"
                 data-nav="work"
-                aria-expanded="false"
-                aria-haspopup="true"
-                aria-controls="nav-work-menu"
                 >工作项目</a
               >
-              <div
-                class="nav-dropdown"
-                id="nav-work-menu"
-                role="menu"
-                aria-label="工作项目列表"
+            </li>
+            <li class="nav-item nav-item--creative">
+              <button
+                type="button"
+                class="nav-link nav-link--planet nav-link--creative"
+                id="nav-creative-trigger"
+                aria-expanded="false"
+                aria-controls="nav-creative-popover"
+                data-nav="creative"
               >
-                <div class="nav-dropdown-inner">
-                  <a
-                    class="nav-dropdown-card nav-dropdown-card--blue"
-                    role="menuitem"
-                    href="case-aigc-showcase.html"
-                  >
-                    <span class="nav-dropdown-title">AIGC短视频创作平台</span>
-                    <span class="nav-dropdown-desc">芒果TV自研的低门槛、易操作的AI视频创作平台</span>
-                  </a>
-                  <a
-                    class="nav-dropdown-card nav-dropdown-card--lavender"
-                    role="menuitem"
-                    href="case-dash-showcase.html"
-                  >
-                    <span class="nav-dropdown-title">智慧运营平台-仪表盘改版设计</span>
-                    <span class="nav-dropdown-desc">芒果TV内部数据分析平台</span>
-                  </a>
-                </div>
+                脑洞大开
+              </button>
+              <div
+                class="nav-creative-popover"
+                id="nav-creative-popover"
+                role="tooltip"
+                aria-hidden="true"
+              >
+                <img
+                  class="nav-creative-popover-art"
+                  src="static/home/nav-bubble-art.png"
+                  alt=""
+                  width="192"
+                  height="109"
+                  decoding="async"
+                />
+                <p class="nav-creative-popover-text">暂时还没开完😅</p>
               </div>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="nav-link nav-link--planet nav-link--resume"
+                data-nav="resume"
+              >
+                我的简历
+              </button>
             </li>
           </ul>
         </nav>
-
-        <img
-          class="header-deco"
-          src="static/figma-nav-deco.png"
-          alt=""
-          width="38"
-          height="23"
-          decoding="async"
-          aria-hidden="true"
-        />
       </div>
     </header>
 
     <main id="main">
-      <section class="hero" id="home" data-section="home" aria-labelledby="hero-title">
-        <div class="hero-stage" id="hero-stage">
+      <section class="planet-hero" id="home" aria-labelledby="planet-hero-title">
+        <div class="planet-hero-sky" aria-hidden="true">
+          <div class="planet-hero-sky-flip">
+            <img src="static/home/hero-bg-milky-way.jpg" alt="" decoding="async" />
+          </div>
+        </div>
+        <div class="planet-hero-meteor" aria-hidden="true">
+          <img src="static/home/hero-meteor-strip.png" alt="" decoding="async" />
+        </div>
+
+        <div class="planet-hero-stage">
           <img
-            class="hero-stage-bg"
-            src="static/figma-hero-main.png"
+            class="planet-hero-earth"
+            src="static/home/hero-earth-collage.png"
             alt=""
             decoding="async"
           />
-          <video
-            class="hero-stage-video"
-            id="hero-hover-video"
-            src="static/hero-character-hover.mp4"
-            muted
-            playsinline
-            loop
-            preload="metadata"
-            aria-hidden="true"
-          ></video>
-          <button
-            type="button"
-            class="hero-person-hit"
-            id="hero-person-hit"
-            aria-label="查看小人动画（悬停或聚焦时播放）"
-          ></button>
-          <div class="hero-stage-copy">
-            <h1 id="hero-title" class="hero-title">Hi，I’m Luu</h1>
-            <p class="hero-bio">一个有一些产品思维、有很多同理心、偶尔有想象力的设计师</p>
+          <img
+            class="planet-hero-object"
+            src="static/home/hero-object-doodle.png"
+            alt=""
+            decoding="async"
+          />
+          <img
+            class="planet-hero-corner"
+            src="static/home/hero-corner-doodle.png"
+            alt=""
+            decoding="async"
+          />
+          <img
+            class="planet-hero-side"
+            src="static/home/hero-side-collage.png"
+            alt=""
+            decoding="async"
+          />
+
+          <div class="planet-hero-copy">
+            <h1 id="planet-hero-title" class="planet-hero-title">Hi，I'm Luu</h1>
+            <p class="planet-hero-sub">Welcome to Planet LL</p>
           </div>
         </div>
       </section>
 
-      <div class="projects-wrap">
-        <article
-          class="project-card project-card--blue project-card--link project-card--split"
-          id="project-aigc"
-          data-section="creative"
-        >
-          <div class="project-card-inner project-card-inner--figma-aigc">
-            <div class="project-card-text">
-              <h2 class="project-card-title-row">
-                <span class="project-index">01</span>
-                <span class="project-card-title">AIGC短视频创作平台</span>
-              </h2>
-              <div class="project-tags project-tags--blue">
-                <span class="tag">0-1设计</span>
-                <span class="tag">产品设计</span>
-                <span class="tag">AI设计</span>
+      <section
+        class="planet-projects"
+        id="planet-projects"
+        aria-label="工作项目"
+      >
+        <div class="planet-projects-card">
+          <article class="planet-row planet-row--link">
+            <a
+              class="planet-row-hit"
+              href="case-aigc-showcase.html"
+              aria-label="Novate｜AIGC短视频创作平台 — 查看案例"
+            ></a>
+            <div class="planet-row-inner">
+              <div class="planet-index" aria-hidden="true">
+                <img
+                  class="planet-index-bg"
+                  src="static/home/planet-01-bg.png"
+                  alt=""
+                  width="148"
+                  height="148"
+                  decoding="async"
+                />
+                <span class="planet-index-num">01</span>
               </div>
-            </div>
-            <div class="project-card-visual-col">
-              <div class="project-card-visual project-card-visual--thumb project-card-video-shell">
-                <div class="project-card-video-widget">
-                  <video
-                    class="project-card-video"
-                    playsinline
-                    preload="metadata"
-                    aria-label="AIGC 短视频创作平台宣传视频"
-                  >
-                    <source
-                      src="static/3%E6%9C%8810%E6%97%A5%282%29%202%20%281%29.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                  <div class="project-card-video-poster-layer" data-video-poster>
-                    <img
-                      class="project-card-video-poster-img"
-                      src="static/shouzhen.png"
-                      alt=""
-                      width="3024"
-                      height="1688"
-                      decoding="async"
-                    />
-                    <button
-                      type="button"
-                      class="project-card-video-play"
-                      aria-label="播放视频"
-                    >
-                      <svg
-                        class="project-card-video-play-icon"
-                        width="48"
-                        height="48"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                        focusable="false"
-                      >
-                        <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.92)" />
-                        <path fill="#333333" d="M18 14 34 24 18 34z" />
-                      </svg>
-                    </button>
+              <div class="planet-row-body">
+                <div class="planet-row-head">
+                  <h2 class="planet-row-title">Novate｜AIGC短视频创作平台</h2>
+                  <div class="planet-tags">
+                    <span class="planet-tag">PC端</span>
+                    <span class="planet-tag">0-1设计</span>
+                    <span class="planet-tag">AI设计</span>
                   </div>
                 </div>
+                <p class="planet-row-desc">
+                  芒果TV自研的低门槛、易操作的AI视频创作平台
+                </p>
               </div>
-              <p class="project-card-video-caption">由该平台制作，点击可播放</p>
+              <div class="planet-row-arrow">
+                <img src="static/home/arrow-aigc.svg" alt="" width="90" height="90" decoding="async" />
+              </div>
             </div>
-            <a
-              class="project-card-text-hit"
-              href="case-aigc-showcase.html"
-              aria-label="AIGC短视频创作平台 — 打开案例长图（站内）"
-            >
-              <span class="sr-only">AIGC短视频创作平台</span>
-            </a>
-          </div>
-        </article>
+          </article>
 
-        <article
-          class="project-card project-card--lavender project-card--link project-card--split"
-          id="project-dashboard"
-          data-section="work"
-        >
-          <div class="project-card-inner project-card-inner--figma-dash">
-            <div class="project-card-text">
-              <h2 class="project-card-title-row">
-                <span class="project-index">02</span>
-                <span class="project-card-title">仪表盘改版设计</span>
-              </h2>
-              <div class="project-tags project-tags--green">
-                <span class="tag">改版设计</span>
-                <span class="tag">交互优化</span>
-                <span class="tag">视觉优化</span>
-              </div>
-            </div>
-            <div class="project-card-visual-col">
-              <div class="project-card-visual project-card-visual--thumb">
-                <img
-                  src="static/project-dash-thumb.png"
-                  alt="仪表盘改版界面预览"
-                  width="1440"
-                  height="780"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <a
-              class="project-card-text-hit"
-              href="case-dash-showcase.html"
-              aria-label="仪表盘改版设计 — 打开案例长图（站内）"
-            >
-              <span class="sr-only">仪表盘改版设计</span>
-            </a>
+          <div class="planet-divider" aria-hidden="true">
+            <img src="static/home/divider-line.svg" alt="" decoding="async" />
           </div>
-        </article>
-      </div>
+
+          <article class="planet-row planet-row--link">
+            <a
+              class="planet-row-hit"
+              href="case-dash-showcase.html"
+              aria-label="智慧运营平台｜仪表盘改版 — 查看案例"
+            ></a>
+            <div class="planet-row-inner">
+              <div class="planet-index" aria-hidden="true">
+                <img
+                  class="planet-index-bg"
+                  src="static/home/planet-02-bg.png"
+                  alt=""
+                  width="148"
+                  height="148"
+                  decoding="async"
+                />
+                <span class="planet-index-num">02</span>
+              </div>
+              <div class="planet-row-body">
+                <div class="planet-row-head">
+                  <h2 class="planet-row-title">智慧运营平台｜仪表盘改版</h2>
+                  <div class="planet-tags">
+                    <span class="planet-tag">PC端</span>
+                    <span class="planet-tag">交互优化</span>
+                    <span class="planet-tag">视觉设计</span>
+                  </div>
+                </div>
+                <p class="planet-row-desc">
+                  智慧运营平台是芒果TV内部使用的数据分析平台，主要包含sql分析、图表绘制、仪表盘等模块
+                </p>
+              </div>
+              <div class="planet-row-arrow">
+                <img src="static/home/arrow-dash.svg" alt="" width="90" height="90" decoding="async" />
+              </div>
+            </div>
+          </article>
+
+          <div class="planet-divider" aria-hidden="true">
+            <img src="static/home/divider-line.svg" alt="" decoding="async" />
+          </div>
+
+          <article class="planet-row planet-row--static">
+            <div class="planet-row-inner">
+              <div class="planet-index" aria-hidden="true">
+                <img
+                  class="planet-index-bg"
+                  src="static/home/planet-03-bg.png"
+                  alt=""
+                  width="148"
+                  height="148"
+                  decoding="async"
+                />
+                <span class="planet-index-num">03</span>
+              </div>
+              <div class="planet-row-body">
+                <div class="planet-row-head">
+                  <h2 class="planet-row-title">川流｜快讯模块设计</h2>
+                  <div class="planet-tags">
+                    <span class="planet-tag">移动端</span>
+                    <span class="planet-tag">创新设计</span>
+                  </div>
+                </div>
+                <p class="planet-row-desc">
+                  川流是芒果TV内部协同办公平台“在芒”中的新闻快讯小程序
+                </p>
+              </div>
+              <div class="planet-row-arrow planet-row-arrow--muted">
+                <img src="static/home/arrow-chuanliu.svg" alt="" width="90" height="90" decoding="async" />
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <script src="main.js" defer></script>
