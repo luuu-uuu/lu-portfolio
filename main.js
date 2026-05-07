@@ -139,7 +139,7 @@
   });
 
   document.addEventListener("click", function (e) {
-    if (!isMobileNav() || !creativeItem || !pageHome) return;
+    if ((!isMobileNav() && !prefersCoarseOrNoHover()) || !creativeItem || !pageHome) return;
     var t = e.target;
     if (!(t instanceof Node)) return;
     if (!creativeItem.contains(t)) {

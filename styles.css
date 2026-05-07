@@ -1726,7 +1726,7 @@ a {
   border-radius: 0;
 }
 
-/* —— Planet LL 首页（Figma 4535:4660） —— */
+/* —— Planet LL 首页（Figma 4535:4660，随稿更新） —— */
 .page-home {
   background: #050508;
 }
@@ -1830,7 +1830,7 @@ a {
   left: 50%;
   top: calc(100% + 10px);
   transform: translateX(-50%);
-  width: min(240px, 72vw);
+  width: min(192px, 72vw);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -1847,21 +1847,6 @@ a {
   display: block;
 }
 
-.page-home .nav-creative-popover-text {
-  position: absolute;
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font-family: "HYPixel 9px J", monospace;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #ffffff;
-  text-align: center;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .page-home .nav-item--creative:hover .nav-creative-popover,
   .page-home .nav-item--creative:focus-within .nav-creative-popover {
@@ -1870,7 +1855,6 @@ a {
   }
 }
 
-/* 触摸设备：禁用 hover 悬浮规则，仅靠脚本控制的 .is-open */
 @media (hover: none) {
   .page-home .nav-creative-popover {
     opacity: 0 !important;
@@ -1904,7 +1888,6 @@ a {
     color: #909090;
   }
 
-  /* 气泡始终在按钮下方展开，避免流入正文区域 */
   .page-home .nav-item--creative {
     position: relative;
     width: 100%;
@@ -1933,7 +1916,7 @@ a {
   }
 }
 
-/* Hero — 按 Figma 画板 1440×1585 比例定位（坐标换算为百分比） */
+/* Hero — 画板 1440×1585；主视觉为单张合成图 Group 284538 */
 .planet-hero {
   --planet-frame-w: 1440;
   --planet-frame-h: 1585;
@@ -1941,7 +1924,6 @@ a {
   width: 100%;
   max-width: calc(1px * var(--planet-frame-w));
   margin: 0 auto;
-  /* 随宽度等比缩放高度，避免窄屏出现巨大空白或裁切 */
   min-height: max(560px, min(1585px, calc(100vw * var(--planet-frame-h) / var(--planet-frame-w))));
   overflow: hidden;
   background: #050508;
@@ -1976,8 +1958,8 @@ a {
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(100% * 924 / var(--planet-frame-h));
-  height: calc(100% * 661 / var(--planet-frame-h));
+  top: calc(100% * 960 / var(--planet-frame-h));
+  height: calc(100% * 625 / var(--planet-frame-h));
   pointer-events: none;
   overflow: hidden;
   z-index: 1;
@@ -1998,56 +1980,21 @@ a {
   pointer-events: none;
 }
 
-.planet-hero-stage img {
-  pointer-events: none;
-}
-
-.planet-hero-earth {
+.planet-hero-collage {
   position: absolute;
-  left: 50%;
-  top: calc(100% * 343 / var(--planet-frame-h));
-  transform: translateX(-50%);
-  width: min(1000px, calc(100% * 1000 / var(--planet-frame-w)));
+  left: calc(100% * 220 / var(--planet-frame-w));
+  top: calc(100% * 201 / var(--planet-frame-h));
+  width: calc(100% * 1160 / var(--planet-frame-w));
   height: auto;
-  max-width: 94vw;
+  aspect-ratio: 1160 / 916;
+  max-width: calc(100% - 2rem);
   z-index: 3;
-}
-
-.planet-hero-object {
-  position: absolute;
-  right: calc(100% * 210 / var(--planet-frame-w));
-  top: calc(100% * 260 / var(--planet-frame-h));
-  width: min(140px, calc(100% * 140 / var(--planet-frame-w)));
-  height: auto;
-  z-index: 5;
-  transform: rotate(24deg);
-}
-
-.planet-hero-corner {
-  position: absolute;
-  right: calc(100% * 120 / var(--planet-frame-w));
-  top: calc(100% * 140 / var(--planet-frame-h));
-  width: min(240px, calc(100% * 260 / var(--planet-frame-w)));
-  height: auto;
-  z-index: 4;
-  transform: rotate(42deg);
-}
-
-.planet-hero-side {
-  position: absolute;
-  right: calc(100% * 100 / var(--planet-frame-w));
-  top: calc(100% * 380 / var(--planet-frame-h));
-  width: min(227px, calc(100% * 227 / var(--planet-frame-w)));
-  height: auto;
-  z-index: 6;
-  transform: rotate(-126deg) scaleY(-1);
 }
 
 .planet-hero-copy {
   position: absolute;
   left: calc(100% * 200 / var(--planet-frame-w));
   top: calc(100% * 195 / var(--planet-frame-h));
-  transform: none;
   z-index: 7;
   text-align: left;
   max-width: min(42vw, 560px);
@@ -2081,29 +2028,11 @@ a {
     text-align: center;
   }
 
-  .planet-hero-earth {
+  .planet-hero-collage {
+    left: 50%;
+    transform: translateX(-50%);
     width: min(94vw, 720px);
-    top: calc(100% * 360 / var(--planet-frame-h));
-  }
-
-  .planet-hero-object {
-    width: min(88px, 18vw);
-    right: 8%;
-    top: calc(100% * 300 / var(--planet-frame-h));
-  }
-
-  .planet-hero-corner {
-    width: min(140px, 28vw);
-    right: 4%;
-    top: calc(100% * 200 / var(--planet-frame-h));
-    opacity: 0.95;
-  }
-
-  .planet-hero-side {
-    width: min(100px, 22vw);
-    right: 6%;
-    top: calc(100% * 430 / var(--planet-frame-h));
-    opacity: 0.95;
+    top: calc(100% * 320 / var(--planet-frame-h));
   }
 }
 
@@ -2111,14 +2040,9 @@ a {
   .planet-hero {
     min-height: 640px;
   }
-
-  .planet-hero-object,
-  .planet-hero-corner {
-    opacity: 0.85;
-  }
 }
 
-/* Projects card — 白卡片顶对齐稿面约 y=676，与 Hero 重叠 */
+/* Projects card — 白卡片顶约 y=676，与 Hero 重叠 */
 .planet-projects {
   position: relative;
   z-index: 10;
@@ -2200,7 +2124,7 @@ a {
 
 .planet-row-title {
   margin: 0;
-  font-family: "HYPixel 9px J", "Noto Sans SC", sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(1.125rem, 2.4vw, 1.875rem);
   font-weight: 600;
   color: #333333;
@@ -2221,6 +2145,7 @@ a {
   padding: 6px 12px;
   border-radius: 8px;
   border: 1px solid rgba(73, 85, 117, 0.55);
+  font-family: var(--font-sans);
   font-size: 12px;
   line-height: 1.2;
   color: #495575;
@@ -2228,6 +2153,7 @@ a {
 
 .planet-row-desc {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.55;
   color: rgba(51, 51, 51, 0.82);
@@ -2291,3 +2217,4 @@ a {
 .page-home #planet-projects {
   scroll-margin-top: 96px;
 }
+
