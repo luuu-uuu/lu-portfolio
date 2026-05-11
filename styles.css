@@ -431,8 +431,7 @@ a {
 
 .nav-link.is-active {
   color: var(--text);
-  /* 为 xuanfu 装饰线留出与文字之间的间距，避免笔画贴上字重 */
-  padding-bottom: 1rem;
+  padding-bottom: 0.65rem;
 }
 
 .nav-link.is-active::after {
@@ -441,9 +440,11 @@ a {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 33px;
-  height: 15px;
-  background: url("static/xuanfu.svg") no-repeat center / contain;
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.55;
   pointer-events: none;
 }
 
