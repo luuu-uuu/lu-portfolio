@@ -3,28 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lu 的个人作品集 — Planet LL" />
+    <meta name="description" content="Lu 的个人作品集" />
     <title>Luu · 个人作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="preload"
-      href="static/fonts/HYPixel9pxJ-2.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" href="fonts/Rayleigh-Demo-Version-2.otf" as="font" type="font/otf" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
-  <body class="page-home">
+  <body class="page-home zpj-v2">
     <a class="skip-link" href="#main">跳到主要内容</a>
 
-    <header class="site-header site-header--planet" id="top">
-      <div class="header-inner header-inner--planet">
+    <header class="site-header site-header--planet site-header--cream" id="top">
+      <div class="header-inner header-inner--planet header-inner--cream">
         <a class="header-logo" href="index.html#home" aria-label="返回首页" id="header-logo">
           <span class="header-logo-visual">
             <img
@@ -76,52 +70,20 @@
           <span class="sr-only">打开菜单</span>
         </button>
 
-        <nav class="site-nav site-nav--planet" id="site-nav" aria-label="主导航">
-          <ul class="nav-list nav-list--planet">
+        <nav class="site-nav site-nav--planet site-nav--cream site-nav--zpj-drawer" id="site-nav" aria-label="主导航">
+          <ul class="nav-list nav-list--planet nav-list--cream">
+            <li>
+              <a class="nav-link nav-link--planet" href="#zpj-projects" data-nav="work">工作项目</a>
+            </li>
             <li>
               <a
-                class="nav-link nav-link--planet"
-                href="#planet-projects"
-                data-nav="work"
-                >工作项目</a
-              >
-            </li>
-            <li class="nav-item nav-item--creative">
-              <button
-                type="button"
-                class="nav-link nav-link--planet nav-link--creative"
-                id="nav-creative-trigger"
-                aria-expanded="false"
-                aria-controls="nav-creative-popover"
-                data-nav="creative"
-              >
-                脑洞大开
-              </button>
-              <div
-                class="nav-creative-popover"
-                id="nav-creative-popover"
-                role="tooltip"
-                aria-hidden="true"
-                aria-label="暂时还没开完"
-              >
-                <img
-                  class="nav-creative-popover-art"
-                  src="static/home/nav-bubble-group.png"
-                  alt=""
-                  width="192"
-                  height="109"
-                  decoding="async"
-                />
-              </div>
-            </li>
-            <li>
-              <button
-                type="button"
                 class="nav-link nav-link--planet nav-link--resume"
+                href="static/Resume.png"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-nav="resume"
+                >我的简历</a
               >
-                我的简历
-              </button>
             </li>
           </ul>
         </nav>
@@ -129,149 +91,171 @@
     </header>
 
     <main id="main">
-      <section class="planet-hero" id="home" aria-labelledby="planet-hero-title">
-        <div class="planet-hero-sky" aria-hidden="true">
-          <div class="planet-hero-sky-flip">
-            <img src="static/home/hero-bg-milky-way.jpg" alt="" decoding="async" />
-          </div>
-        </div>
-        <div class="planet-hero-meteor" aria-hidden="true">
-          <img src="static/home/hero-meteor-strip.jpg" alt="" decoding="async" />
-        </div>
-
-        <div class="planet-hero-stage">
-          <img
-            class="planet-hero-collage"
-            src="static/home/hero-collage-main.png"
-            alt=""
-            width="1160"
-            height="916"
-            decoding="async"
-          />
-
-          <div class="planet-hero-copy">
-            <h1 id="planet-hero-title" class="planet-hero-title">Hi，I'm Luu</h1>
-            <p class="planet-hero-sub">Welcome to Planet LL</p>
+      <section class="zpj-hero" id="home" aria-labelledby="zpj-hero-title">
+        <div class="zpj-hero-inner">
+          <div class="zpj-hero-art">
+            <div class="zpj-hero-tree-wrap" aria-hidden="true">
+              <img
+                class="zpj-hero-tree"
+                src="static/tree.png"
+                alt=""
+                width="1270"
+                height="762"
+                decoding="async"
+              />
+            </div>
+            <h1 id="zpj-hero-title" class="zpj-hero-title">Hi&nbsp;&nbsp;!&nbsp;&nbsp;I&nbsp;am&nbsp;Luu</h1>
+            <nav class="zpj-hero-nav" aria-label="页面导航">
+              <a class="zpj-hero-nav-link" href="#zpj-projects" data-nav="work">工作项目</a>
+              <a
+                class="zpj-hero-nav-link"
+                href="static/Resume.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-nav="resume"
+                >我的简历</a
+              >
+            </nav>
+            <!-- 人物：更新资源后改 ?v=（与 main.js 同步）；悬停换 GIF 见 main.js -->
+            <div
+              id="hero-person"
+              class="zpj-hero-person"
+              tabindex="0"
+              role="img"
+              aria-label="装饰小人，悬停播放动效"
+            >
+              <img
+                id="hero-person-img"
+                class="zpj-hero-person-img"
+                src="static/person.png?v=5"
+                alt=""
+                width="268"
+                height="358"
+                decoding="async"
+                loading="eager"
+                fetchpriority="high"
+                draggable="false"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section
-        class="planet-projects"
-        id="planet-projects"
-        aria-label="工作项目"
-      >
-        <div class="planet-projects-card">
-          <article class="planet-row planet-row--link">
-            <a
-              class="planet-row-hit"
-              href="case-aigc-showcase.html"
-              aria-label="Novate｜AIGC短视频创作平台 — 查看案例"
-            ></a>
-            <div class="planet-row-inner">
-              <div class="planet-index" aria-hidden="true">
-                <img
-                  class="planet-index-bg"
-                  src="static/home/planet-01-bg.png"
-                  alt=""
-                  width="148"
-                  height="148"
-                  decoding="async"
-                />
-                <span class="planet-index-num">01</span>
-              </div>
-              <div class="planet-row-body">
-                <div class="planet-row-head">
-                  <h2 class="planet-row-title">Novate｜AIGC短视频创作平台</h2>
-                  <div class="planet-tags">
-                    <span class="planet-tag">PC端</span>
-                    <span class="planet-tag">0-1设计</span>
-                    <span class="planet-tag">AI设计</span>
-                  </div>
-                </div>
-                <p class="planet-row-desc">
-                  芒果TV自研的低门槛、易操作的AI视频创作平台
-                </p>
-              </div>
-              <div class="planet-row-arrow">
-                <img src="static/home/arrow-aigc.svg" alt="" width="90" height="90" decoding="async" />
+      <section class="zpj-projects" id="zpj-projects" aria-label="工作项目">
+        <div class="zpj-projects-inner">
+        <a
+          class="zpj-card zpj-card--link"
+          href="project1.html"
+          aria-label="Novate｜AIGC短视频创作平台 — 查看案例"
+        >
+          <span
+            class="zpj-card-decor zpj-card-decor--flower"
+            data-decor-still="static/card1-flower.png"
+            data-decor-gif="static/flower_move.gif"
+            aria-hidden="true"
+          >
+            <img
+              src="static/card1-flower.png"
+              alt=""
+              width="81"
+              height="75"
+              decoding="async"
+            />
+          </span>
+          <div class="zpj-card-inner">
+            <div class="zpj-card-thumb zpj-card-thumb--r8">
+              <img src="static/card1.png" alt="" width="524" height="283" decoding="async" />
+            </div>
+            <div class="zpj-card-body">
+              <h2 class="zpj-card-title">Novate｜AIGC短视频创作平台</h2>
+              <p class="zpj-card-desc">
+                芒果TV自研的低门槛、易操作的AI视频创作平台
+              </p>
+              <div class="zpj-card-tags">
+                <span class="zpj-tag">0-1设计</span>
+                <span class="zpj-tag">产品设计</span>
+                <span class="zpj-tag">AI设计</span>
               </div>
             </div>
-          </article>
+          </div>
+        </a>
 
-          <hr class="planet-divider-line" aria-hidden="true" />
-
-          <article class="planet-row planet-row--link">
-            <a
-              class="planet-row-hit"
-              href="case-dash-showcase.html"
-              aria-label="智慧运营平台｜仪表盘改版 — 查看案例"
-            ></a>
-            <div class="planet-row-inner">
-              <div class="planet-index" aria-hidden="true">
-                <img
-                  class="planet-index-bg"
-                  src="static/home/planet-02-bg.png"
-                  alt=""
-                  width="148"
-                  height="148"
-                  decoding="async"
-                />
-                <span class="planet-index-num">02</span>
-              </div>
-              <div class="planet-row-body">
-                <div class="planet-row-head">
-                  <h2 class="planet-row-title">智慧运营平台｜仪表盘改版</h2>
-                  <div class="planet-tags">
-                    <span class="planet-tag">PC端</span>
-                    <span class="planet-tag">交互优化</span>
-                    <span class="planet-tag">视觉设计</span>
-                  </div>
-                </div>
-                <p class="planet-row-desc">
-                  智慧运营平台是芒果TV内部使用的数据分析平台，主要包含sql分析、图表绘制、仪表盘等模块
-                </p>
-              </div>
-              <div class="planet-row-arrow">
-                <img src="static/home/arrow-dash.svg" alt="" width="90" height="90" decoding="async" />
+        <a
+          class="zpj-card zpj-card--link"
+          href="project2.html"
+          aria-label="智慧运营平台｜仪表盘改版设计 — 查看案例"
+        >
+          <span
+            class="zpj-card-decor zpj-card-decor--plant"
+            data-decor-still="static/card2-plant.png"
+            data-decor-gif="static/plant_move.gif"
+            aria-hidden="true"
+          >
+            <img
+              src="static/card2-plant.png"
+              alt=""
+              width="72"
+              height="64"
+              decoding="async"
+            />
+          </span>
+          <div class="zpj-card-inner">
+            <div class="zpj-card-thumb zpj-card-thumb--r12">
+              <img src="static/card2.png" alt="" width="524" height="283" decoding="async" />
+            </div>
+            <div class="zpj-card-body">
+              <h2 class="zpj-card-title zpj-card-title--alt">智慧运营平台｜仪表盘改版设计</h2>
+              <p class="zpj-card-desc">
+                智慧运营平台是芒果TV内部使用的数据分析平台，主要包含数据源接入、sql分析、图表绘制、仪表盘等模块。
+              </p>
+              <div class="zpj-card-tags">
+                <span class="zpj-tag">改版设计</span>
+                <span class="zpj-tag">交互优化</span>
+                <span class="zpj-tag">视觉优化</span>
               </div>
             </div>
-          </article>
+          </div>
+        </a>
 
-          <hr class="planet-divider-line" aria-hidden="true" />
-
-          <article class="planet-row planet-row--static">
-            <div class="planet-row-inner">
-              <div class="planet-index" aria-hidden="true">
-                <img
-                  class="planet-index-bg"
-                  src="static/home/planet-03-bg.png"
-                  alt=""
-                  width="148"
-                  height="148"
-                  decoding="async"
-                />
-                <span class="planet-index-num">03</span>
-              </div>
-              <div class="planet-row-body">
-                <div class="planet-row-head">
-                  <h2 class="planet-row-title">川流｜快讯模块设计</h2>
-                  <div class="planet-tags">
-                    <span class="planet-tag">移动端</span>
-                    <span class="planet-tag">创新设计</span>
-                  </div>
-                </div>
-                <p class="planet-row-desc">
-                  川流是芒果TV内部协同办公平台“在芒”中的新闻快讯小程序
-                </p>
-              </div>
-              <div class="planet-row-arrow planet-row-arrow--muted">
-                <img src="static/home/arrow-chuanliu.svg" alt="" width="90" height="90" decoding="async" />
+        <a
+          class="zpj-card zpj-card--link"
+          href="project3.html"
+          aria-label="川流｜快讯模块设计 — 查看案例"
+        >
+          <span
+            class="zpj-card-decor zpj-card-decor--cloud"
+            data-decor-still="static/card3-cloud.png"
+            data-decor-gif="static/cloud_move.gif?v=2"
+            aria-hidden="true"
+          >
+            <img
+              src="static/card3-cloud.png"
+              alt=""
+              width="80"
+              height="51"
+              decoding="async"
+            />
+          </span>
+          <div class="zpj-card-inner">
+            <div class="zpj-card-thumb zpj-card-thumb--r12 zpj-card-thumb--muted">
+              <img src="static/card3.png" alt="" width="524" height="283" decoding="async" />
+            </div>
+            <div class="zpj-card-body">
+              <h2 class="zpj-card-title zpj-card-title--alt">川流｜快讯模块设计</h2>
+              <p class="zpj-card-desc">
+                川流是芒果TV内部协同办公平台“在芒”中的新闻资讯类小程序。现需在该小程序中新增快讯模块，用于向芒果TV同事传递公司业务相关的优质动态
+              </p>
+              <div class="zpj-card-tags">
+                <span class="zpj-tag">移动端</span>
+                <span class="zpj-tag">设计思考</span>
               </div>
             </div>
-          </article>
+          </div>
+        </a>
         </div>
       </section>
+
+      <p class="zpj-footer-note" role="note">更多精彩，敬请期待</p>
     </main>
 
     <script src="main.js" defer></script>

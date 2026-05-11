@@ -10,7 +10,6 @@
   var creativeTrigger = document.getElementById("nav-creative-trigger");
   var creativeItem = document.querySelector(".nav-item--creative");
   var creativePopover = document.getElementById("nav-creative-popover");
-  var resumeBtn = document.querySelector(".nav-link--resume");
   var pageHome = document.body.classList.contains("page-home");
 
   var NAV_ORDER = [
@@ -35,6 +34,13 @@
     if (header) header.classList.toggle("nav-open", open);
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.style.overflow = open ? "hidden" : "";
+    if (header && zpjHomeHeader) {
+      if (open) {
+        header.classList.remove("site-header--zpj-scroll-hidden");
+      } else {
+        setZpjHeaderScrollHidden();
+      }
+    }
     if (!open && workDropdown) {
       workDropdown.classList.remove("is-open");
       if (workTrigger) workTrigger.setAttribute("aria-expanded", "false");
@@ -94,14 +100,9 @@
     });
   }
 
-  if (resumeBtn && pageHome) {
-    resumeBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-    });
-  }
-
-  if (siteNav) {
-    siteNav.querySelectorAll('a[href^="#"]').forEach(function (a) {
+  function bindHashNavLinks(root) {
+    if (!root) return;
+    root.querySelectorAll('a[href^="#"]').forEach(function (a) {
       if (a.id === "nav-work-trigger") return;
       a.addEventListener("click", function (e) {
         var href = a.getAttribute("href");
@@ -120,6 +121,9 @@
       });
     });
   }
+
+  bindHashNavLinks(siteNav);
+  bindHashNavLinks(document.querySelector(".zpj-hero-nav"));
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
@@ -162,13 +166,15 @@
 
   function updateActiveNav() {
     if (pageHome) {
-      var workLink = document.querySelector('.nav-link--planet[data-nav="work"]');
-      var projects = document.getElementById("planet-projects");
-      if (workLink && projects) {
+      var workLinks = document.querySelectorAll('[data-nav="work"]');
+      var projects = document.getElementById("zpj-projects");
+      if (workLinks.length && projects) {
         var rect = projects.getBoundingClientRect();
         var vh = window.innerHeight;
         var inView = rect.top < vh * 0.55 && rect.bottom > vh * 0.2;
-        workLink.classList.toggle("is-active", inView);
+        workLinks.forEach(function (el) {
+          el.classList.toggle("is-active", inView);
+        });
       }
       return;
     }
@@ -199,6 +205,25 @@
   }
 
   var scrollThreshold = 8;
+  var zpjHomeHeader =
+    document.body.classList.contains("page-home") && document.body.classList.contains("zpj-v2");
+  var zpjHeaderHideAt = 32;
+
+  function setZpjHeaderScrollHidden() {
+    if (!header || !zpjHomeHeader) return;
+    if (header.classList.contains("nav-open")) return;
+    /* 小屏顶栏含汉堡，收起会点不到菜单 */
+    if (isMobileNav()) {
+      header.classList.remove("site-header--zpj-scroll-hidden");
+      return;
+    }
+    if (window.scrollY > zpjHeaderHideAt) {
+      header.classList.add("site-header--zpj-scroll-hidden");
+    } else {
+      header.classList.remove("site-header--zpj-scroll-hidden");
+    }
+  }
+
   function onScroll() {
     if (header) {
       if (window.scrollY > scrollThreshold) {
@@ -206,12 +231,20 @@
       } else {
         header.classList.remove("is-scrolled");
       }
+      setZpjHeaderScrollHidden();
     }
     updateActiveNav();
   }
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", updateActiveNav, { passive: true });
+  window.addEventListener(
+    "resize",
+    function () {
+      updateActiveNav();
+      setZpjHeaderScrollHidden();
+    },
+    { passive: true }
+  );
   onScroll();
 
   document.addEventListener("visibilitychange", function () {
@@ -256,4 +289,76 @@
       }
     });
   });
+
+  /* Hero 装饰小人：默认 person.png，悬停 person_move.gif（与 index 中 ?v= 同步） */
+  (function heroPersonHover() {
+    var img = document.getElementById("hero-person-img");
+    var wrap = document.getElementById("hero-person");
+    if (!img || !wrap) return;
+    var still = "static/person.png?v=5";
+    var gif = "static/person_move.gif?v=5";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    wrap.addEventListener("mouseenter", function () {
+      img.setAttribute("src", gif);
+    });
+    wrap.addEventListener("mouseleave", function () {
+      img.setAttribute("src", still);
+    });
+  })();
+
+  /* 项目卡片装饰：悬停换对应 GIF（data-decor-gif），离开还原 PNG */
+  (function projectCardDecorHover() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll(".zpj-card-decor[data-decor-gif]").forEach(function (decor) {
+      var img = decor.querySelector("img");
+      var still = decor.getAttribute("data-decor-still");
+      var gif = decor.getAttribute("data-decor-gif");
+      var card = decor.closest(".zpj-card");
+      if (!img || !still || !gif || !card) return;
+      card.addEventListener("mouseenter", function () {
+        img.setAttribute("src", gif);
+      });
+      card.addEventListener("mouseleave", function () {
+        img.setAttribute("src", still);
+      });
+    });
+  })();
+
+  /* 首页 Hero「Hi !  I am Luu」：进入后从左到右逐字显现 */
+  (function heroTitleTypewriter() {
+    var el = document.getElementById("zpj-hero-title");
+    if (!el) return;
+    if (
+      !document.body.classList.contains("page-home") ||
+      !document.body.classList.contains("zpj-v2")
+    ) {
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var full = el.textContent;
+    if (!full || !full.length) return;
+    el.textContent = "";
+    el.setAttribute("aria-label", full);
+    var spans = [];
+    for (var i = 0; i < full.length; i++) {
+      var span = document.createElement("span");
+      span.className = "zpj-hero-title-char";
+      span.appendChild(document.createTextNode(full.charAt(i)));
+      el.appendChild(span);
+      spans.push(span);
+    }
+    var stepMs = 44;
+    var startDelayMs = 120;
+    var j = 0;
+    function revealNext() {
+      if (j >= spans.length) {
+        el.removeAttribute("aria-label");
+        return;
+      }
+      spans[j].classList.add("is-visible");
+      j += 1;
+      window.setTimeout(revealNext, stepMs);
+    }
+    window.setTimeout(revealNext, startDelayMs);
+  })();
 })();
